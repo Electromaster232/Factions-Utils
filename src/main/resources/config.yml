@@ -1,0 +1,15 @@
+# Minimum time since a player left a faction before their location can be revealed
+hours-required: 48
+
+# Require target to be online to reveal their exact XYZ coordinates
+require-online: false
+
+messages:
+  not-eligible-currently-in-faction: "&cThat player is currently in a faction."
+  not-eligible-too-soon: "&cThat player left a faction &e%hours%&c hours ago. Wait &e%remaining%&c more hours."
+  not-eligible-no-history: "&cNo leave history for that player yet."
+  offline-not-allowed: "&cPlayer is offline. Exact location is unavailable."
+  reveal: "&a%player%&7 is at &f%world%&7: &fX=%x% Y=%y% Z=%z% (&fyaw=%yaw% pitch=%pitch%&7)"
+  usage: "&7Usage: /revealplayer <player>"
+  no-permission: "&cYou lack permission: ifreveal.reveal"
+  player-not-found: "&cPlayer not found."

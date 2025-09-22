@@ -1,0 +1,16 @@
+name: IF-Reveal
+main: me.djelectro.ifreveal.IFRevealPlugin
+version: 1.0.0
+api-version: '1.18'
+author: DJElectro
+depend: [ImprovedFactions]
+
+commands:
+  revealplayer:
+    description: Reveal a player's exact location if eligible (factionless & past the grace window)
+    usage: /revealplayer <player>
+    permission: ifreveal.reveal
+
+permissions:
+  ifreveal.reveal:
+    default: op
