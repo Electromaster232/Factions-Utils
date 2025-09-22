@@ -11,9 +11,12 @@ repositories {
     // Paper API for compileOnly
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
-    maven {
+    /*maven {
         name = "paulemReleases"
         url = uri("https://maven.paulem.net/releases")
+    }*/
+    maven {
+        url = uri("https://repo.extendedclip.com/releases/")
     }
 
 }
@@ -27,6 +30,8 @@ dependencies {
 
     // Shade Kotlin stdlib so servers don't need a Kotlin runtime plugin
     implementation(kotlin("stdlib"))
+
+    compileOnly("me.clip:placeholderapi:2.11.6")
 }
 
 java {

@@ -11,7 +11,7 @@ import org.bukkit.event.Listener
  */
 class IFEvents(
     private val plugin: IFRevealPlugin,
-    private val store: LeaveStore
+    private val store: DataStore
 ) : Listener {
 
     @EventHandler

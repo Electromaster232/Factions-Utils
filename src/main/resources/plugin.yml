@@ -3,6 +3,7 @@ main: me.djelectro.ifreveal.IFRevealPlugin
 version: 1.0.0
 api-version: '1.18'
 author: DJElectro
+softdepend: ["PlaceholderAPI"]
 depend: [ImprovedFactions]
 
 commands:

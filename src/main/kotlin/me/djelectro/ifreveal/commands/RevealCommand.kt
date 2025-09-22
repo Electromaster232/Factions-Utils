@@ -1,6 +1,8 @@
-package me.djelectro.ifreveal
+package me.djelectro.ifreveal.commands
 
 import io.github.toberocat.improvedfactions.user.factionUser
+import me.djelectro.ifreveal.IFRevealPlugin
+import me.djelectro.ifreveal.DataStore
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
@@ -8,12 +10,13 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
+import java.util.Locale
+import java.util.UUID
 import kotlin.math.ceil
-import java.util.*
 
 class RevealCommand(
     private val plugin: IFRevealPlugin,
-    private val store: LeaveStore
+    private val store: DataStore
 ) : CommandExecutor, TabCompleter {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -31,7 +34,7 @@ class RevealCommand(
         val targetName = args[0]
 
         val onlineTarget: Player? = Bukkit.getPlayerExact(targetName)
-        val targetUUID: UUID? = onlineTarget?.uniqueId ?: Bukkit.getOfflinePlayer(targetName)?.uniqueId
+        val targetUUID: UUID? = onlineTarget?.uniqueId ?: Bukkit.getOfflinePlayer(targetName).uniqueId
 
         if (targetUUID == null) {
             msg(sender, plugin.config.getString("messages.player-not-found")!!)
@@ -65,7 +68,7 @@ class RevealCommand(
             msg(
                 sender,
                 plugin.config.getString("messages.not-eligible-too-soon")!!
-                    .replace("%hours%", String.format(Locale.US, "%.1f", hoursElapsed))
+                    .replace("%hours%", String.Companion.format(Locale.US, "%.1f", hoursElapsed))
                     .replace("%remaining%", remaining.toString())
             )
             return true

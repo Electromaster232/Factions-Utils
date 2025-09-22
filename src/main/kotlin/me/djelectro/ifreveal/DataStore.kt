@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.util.UUID
 
-class LeaveStore(private val plugin: IFRevealPlugin) {
+class DataStore(private val plugin: IFRevealPlugin) {
     private val file = File(plugin.dataFolder, "leaves.yml")
     private val config = YamlConfiguration()
 

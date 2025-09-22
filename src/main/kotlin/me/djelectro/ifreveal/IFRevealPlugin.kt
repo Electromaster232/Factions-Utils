@@ -1,13 +1,14 @@
 package me.djelectro.ifreveal
+import me.djelectro.ifreveal.commands.RevealCommand
 import org.bukkit.plugin.java.JavaPlugin
 
 class IFRevealPlugin : JavaPlugin() {
-    lateinit var store: LeaveStore
+    lateinit var store: DataStore
         private set
 
     override fun onEnable() {
         saveDefaultConfig()
-        store = LeaveStore(this)
+        store = DataStore(this)
         // Register IF events (join/leave)
         server.pluginManager.registerEvents(IFEvents(this, store), this)
         // Register command
