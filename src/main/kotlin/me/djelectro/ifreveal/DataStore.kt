@@ -22,6 +22,15 @@ class DataStore(private val plugin: IFRevealPlugin) {
         return config.getString("players.$uuid.lastFaction")
     }
 
+    fun getColor(factionId: Int): String? {
+        return config.getString("factions.$factionId.color")
+    }
+
+    fun setColor(factionId: Int, color: String) {
+        config.set("factions.$factionId.color", color)
+        save()
+    }
+
     fun setLastLeave(uuid: UUID, millis: Long, factionName: String?) {
         config.set("players.$uuid.lastLeave", millis)
         if (factionName != null) {

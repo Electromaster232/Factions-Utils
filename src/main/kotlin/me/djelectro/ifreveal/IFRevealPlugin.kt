@@ -1,4 +1,5 @@
 package me.djelectro.ifreveal
+import me.djelectro.ifreveal.commands.FactionChatColor
 import me.djelectro.ifreveal.commands.RevealCommand
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -17,11 +18,15 @@ class IFRevealPlugin : JavaPlugin() {
         cmd?.setExecutor(executor)
         cmd?.tabCompleter = executor
 
-        logger.info("IF-Reveal enabled.")
+        val cmd2 = getCommand("chatcolor")
+        val executor2 = FactionChatColor(this, store)
+        cmd2?.setExecutor(executor2)
+
+        logger.info("IF-Utils enabled.")
     }
 
     override fun onDisable() {
         store.save()
-        logger.info("IF-Reveal disabled.")
+        logger.info("IF-Utils disabled.")
     }
 }

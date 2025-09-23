@@ -1,6 +1,6 @@
-name: IF-Reveal
+name: IF-Utils
 main: me.djelectro.ifreveal.IFRevealPlugin
-version: 1.0.0
+version: 1.1.0
 api-version: '1.18'
 author: DJElectro
 softdepend: ["PlaceholderAPI"]
@@ -11,6 +11,10 @@ commands:
     description: Reveal a player's exact location if eligible (factionless & past the grace window)
     usage: /revealplayer <player>
     permission: ifreveal.reveal
+
+  chatcolor:
+    description: Change the chat color for your current faction
+    usage: /chatcolor <hex code>
 
 permissions:
   ifreveal.reveal:
