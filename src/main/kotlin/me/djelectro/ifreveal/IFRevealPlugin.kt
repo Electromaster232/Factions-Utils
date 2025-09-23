@@ -1,6 +1,7 @@
 package me.djelectro.ifreveal
 import me.djelectro.ifreveal.commands.FactionChatColor
 import me.djelectro.ifreveal.commands.RevealCommand
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 class IFRevealPlugin : JavaPlugin() {
@@ -22,6 +23,9 @@ class IFRevealPlugin : JavaPlugin() {
         val executor2 = FactionChatColor(this, store)
         cmd2?.setExecutor(executor2)
 
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) { //
+            ChatColorPlaceholderExpansion(this, store).register()
+        }
         logger.info("IF-Utils enabled.")
     }
 
