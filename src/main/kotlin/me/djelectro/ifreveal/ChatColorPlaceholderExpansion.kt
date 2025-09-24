@@ -2,6 +2,7 @@ package me.djelectro.ifreveal
 
 import io.github.toberocat.improvedfactions.user.factionUser
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 
 class ChatColorPlaceholderExpansion(    private val plugin: IFRevealPlugin,
@@ -24,10 +25,11 @@ class ChatColorPlaceholderExpansion(    private val plugin: IFRevealPlugin,
         val factionPlayer = uuid.factionUser()
         if(!factionPlayer.isInFaction()){
             // If not in a faction, return white (default)
-            return "&#FFFFFF";
+            return ChatColor.WHITE.toString();
         }
 
-        val colorCode = plugin.store.getColor(factionPlayer.factionId)
-        return "&#$colorCode"
+        val colorCode = store.getColor(factionPlayer.factionId)?.let { ChatColor.translateAlternateColorCodes('&', it) }
+            ?: return ChatColor.WHITE.toString()
+        return colorCode
     }
 }

@@ -9,6 +9,8 @@ import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
+import java.util.UUID
 
 class FactionChatColor ( private val plugin: IFRevealPlugin, private val store: DataStore) : CommandExecutor {
     override fun onCommand(
@@ -18,32 +20,37 @@ class FactionChatColor ( private val plugin: IFRevealPlugin, private val store: 
         p3: Array<out String>?
     ): Boolean {
 
+        if (p0 !is Player) {
+            p0.sendMessage("Players only.")
+            return true
+        }
+
+        if(!p0.hasPermission("chat.changecolor")){
+            p0.sendMessage("You do not have permission to change the color.")
+            return true
+        }
 
         // Try to find the Sender's faction
-        val factionUser  = Bukkit.getPlayer(p0.name)!!.uniqueId.factionUser()
+        val factionUser = p0.factionUser()
+
 
         if(!factionUser.isInFaction()) {
             p0.sendMessage(ChatColor.RED.toString() + ChatColor.BOLD + "You are not in a Faction.")
-            return false
+            return true
         }
-
-        // Determine if they are admin of the faction
-        if(!factionUser.hasPermission("chat.color")){
-            p0.sendMessage(ChatColor.RED.toString() + "You don't have permission to use this command!")
-            return false
-        }
+        var factionId = factionUser.factionId
 
         val color = p3?.get(0)
         if(color == null) {
             p0.sendMessage(ChatColor.RED.toString() + "You did not specify a color!");
-            return false
+            return true
         }
 
         if(color.startsWith("#")) {
             color.trimStart('#')
         }
 
-        store.setColor(factionUser.factionId, color)
+        store.setColor(factionId, color)
         p0.sendMessage(ChatColor.GREEN.toString() + ChatColor.BOLD + "Faction chat color successfully set!")
         return true
 
